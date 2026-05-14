@@ -1,4 +1,5 @@
 import flet as ft
+from auth.register import register_view
 
 def main(page: ft.Page):
     page.title = "Prontuário Odontológico"
@@ -24,7 +25,10 @@ def main(page: ft.Page):
             sidebar,
             ft.VerticalDivider(width=1),
             ft.Column([cards], expand=True)
-        ], expand=True)
-    )
-
+        ], expand=True))
+        
+        
+    #Iniciar o login
+    page.add(register_view(page))
+    
 ft.app(target=main)
