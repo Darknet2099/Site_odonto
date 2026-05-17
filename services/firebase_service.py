@@ -26,7 +26,8 @@ def criar_usuario(nome, email, senha):
 
     db.collection("usuarios").document(user.uid).set({
         "nome": nome,
-        "email": email
+        "email": email,
+        "senha": senha
     })
 
     return user.uid
