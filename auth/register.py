@@ -1,45 +1,37 @@
 import flet as ft
+from services.firebase_service import criar_usuario
 
-def register_view(page: ft.Page, abrir_menu):
 
-    titulo = ft.Text(
-        "Cadastro de Usuário",
-        size=30,
-        weight=ft.FontWeight.BOLD
-    )
+def register_view(page: ft.Page, mostrar_menu_principal):
 
     nome = ft.TextField(label="Nome")
     email = ft.TextField(label="Email")
     senha = ft.TextField(label="Senha", password=True)
 
-    mensagem = ft.Text("")
-
     def cadastrar(e):
 
-        if not nome.value or not email.value or not senha.value:
-            mensagem.value = "Preencha todos os campos!"
-            mensagem.color = "red"
-            page.update()
-            return
+        uid = criar_usuario(
+            nome.value,
+            email.value,
+            senha.value
+        )
 
-        mensagem.value = "Cadastro realizado!"
-        mensagem.color = "green"
-
+        page.snack_bar = ft.SnackBar(
+            ft.Text(f"Usuário criado: {uid}")
+        )
+        page.snack_bar.open = True
         page.update()
 
-        # entra no sistema
-        abrir_menu()
+        # Limpa a tela atual para preparar a próxima
+        page.controls.clear()
+
+        # Vai para o menu principal
+        mostrar_menu_principal()
 
     return ft.Column([
-        titulo,
+        ft.Text("Cadastro de Usuário"),
         nome,
         email,
         senha,
-
-        ft.ElevatedButton(
-            "Cadastrar",
-            on_click=cadastrar
-        ),
-
-        mensagem
+        ft.ElevatedButton("Cadastrar", on_click=cadastrar)
     ])

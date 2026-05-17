@@ -88,7 +88,7 @@ def main(page: ft.Page):
         )
 
         page.update()
-
+        
     # ---------------------------
     # PRIMEIRA TELA = CADASTRO
     # ---------------------------
