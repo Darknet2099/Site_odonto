@@ -1,7 +1,9 @@
 import flet as ft
+
 from auth.register import register_view
-# Importa a nova tela que criamos (ajuste o caminho se salvou em alguma pasta)
-from auth.appointments import appointments_view 
+from auth.login import login_view
+from auth.appointments import appointments_view
+
 
 def main(page: ft.Page):
 
@@ -10,7 +12,16 @@ def main(page: ft.Page):
     page.padding = 20
 
     # ---------------------------
-    # FUNÇÃO PARA ABRIR SESSÕES PADRÃO
+    # LOGOUT (PASSO 6 - ORGANIZADO)
+    # ---------------------------
+
+    def logout():
+        page.controls.clear()
+        mostrar_inicio()
+        page.update()
+
+    # ---------------------------
+    # FUNÇÃO PADRÃO DE TELAS
     # ---------------------------
 
     def ir_para_tela(nome_sessao):
@@ -38,16 +49,51 @@ def main(page: ft.Page):
         page.update()
 
     # ---------------------------
-    # FUNÇÃO PARA ABRIR A TELA DE CONSULTAS
+    # CONSULTAS
     # ---------------------------
+
     def abrir_tela_consultas():
         page.controls.clear()
-        # Adiciona a view externa passando a página e a função de voltar
         page.add(appointments_view(page, mostrar_menu_principal))
         page.update()
 
     # ---------------------------
-    # MENU PRINCIPAL
+    # LOGIN
+    # ---------------------------
+
+    def abrir_login():
+
+        page.controls.clear()
+
+        page.add(
+            login_view(
+                page,
+                mostrar_menu_principal,
+                mostrar_inicio
+            )
+        )
+
+        page.update()
+
+    # ---------------------------
+    # CADASTRO
+    # ---------------------------
+
+    def abrir_cadastro():
+
+        page.controls.clear()
+
+        page.add(
+            register_view(
+                page,
+                mostrar_menu_principal
+            )
+        )
+
+        page.update()
+
+    # ---------------------------
+    # MENU PRINCIPAL (COM LOGOUT PASSO 6)
     # ---------------------------
 
     def mostrar_menu_principal():
@@ -62,7 +108,7 @@ def main(page: ft.Page):
 
         sessoes = [
             "Perfil",
-            "Marcar e gerenciar consultas", # Clicar aqui vai redirecionar para a nova tela
+            "Marcar e gerenciar consultas",
             "Registrar faltas e presenças",
             "Histórico de consultas",
             "Registrar procedimentos realizados",
@@ -76,11 +122,10 @@ def main(page: ft.Page):
         )
 
         for sessao in sessoes:
-            # Condição para definir qual função o botão vai chamar ao ser clicado
+
             if sessao == "Marcar e gerenciar consultas":
                 acao_clique = lambda _: abrir_tela_consultas()
             else:
-                # Mantém o comportamento genérico para as outras sessões temporariamente
                 acao_clique = lambda e, s=sessao: ir_para_tela(s)
 
             lista_botoes.controls.append(
@@ -92,25 +137,67 @@ def main(page: ft.Page):
                 )
             )
 
+        # 🔥 LOGOUT (PASSO 6 AQUI)
+        botao_logout = ft.ElevatedButton(
+            "Logout",
+            width=600,
+            height=50,
+            on_click=lambda e: logout()
+        )
+
         page.add(
             ft.Column([
                 titulo,
                 ft.Container(height=10),
-                lista_botoes
+                lista_botoes,
+                ft.Container(height=20),
+                botao_logout
             ], expand=True)
         )
 
         page.update()
-        
+
     # ---------------------------
-    # PRIMEIRA TELA = CADASTRO
+    # TELA INICIAL
     # ---------------------------
 
-    page.add(
-        register_view(
-            page,
-            mostrar_menu_principal
+    def mostrar_inicio():
+
+        page.controls.clear()
+
+        page.add(
+            ft.Column([
+
+                ft.Text(
+                    "Sistema Odontológico",
+                    size=30,
+                    weight=ft.FontWeight.BOLD
+                ),
+
+                ft.Container(height=20),
+
+                ft.ElevatedButton(
+                    "Login",
+                    width=300,
+                    on_click=lambda e: abrir_login()
+                ),
+
+                ft.ElevatedButton(
+                    "Cadastro",
+                    width=300,
+                    on_click=lambda e: abrir_cadastro()
+                )
+
+            ])
         )
-    )
+
+        page.update()
+
+    # ---------------------------
+    # INÍCIO DO APP
+    # ---------------------------
+
+    mostrar_inicio()
+
 
 ft.app(target=main)
