@@ -4,15 +4,22 @@ from services.firebase_service import criar_usuario
 
 def register_view(page: ft.Page, mostrar_menu_principal):
 
-    nome = ft.TextField(label="Nome")
+    nome = ft.TextField(label="Nome completo")
+    nascimento = ft.TextField(label="Data de nascimento (DD/MM/AAAA)")
     email = ft.TextField(label="Email")
+    celular = ft.TextField(label="Número de celular")
     senha = ft.TextField(label="Senha", password=True)
+
+
+    
 
     def cadastrar(e):
 
         uid = criar_usuario(
             nome.value,
+            nascimento.value,
             email.value,
+            celular.value,
             senha.value
         )
 
@@ -31,7 +38,9 @@ def register_view(page: ft.Page, mostrar_menu_principal):
     return ft.Column([
         ft.Text("Cadastro de Usuário"),
         nome,
+        nascimento,
         email,
+        celular,
         senha,
         ft.ElevatedButton("Cadastrar", on_click=cadastrar)
     ])

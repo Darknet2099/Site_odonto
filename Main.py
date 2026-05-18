@@ -11,19 +11,24 @@ def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.LIGHT
     page.padding = 20
 
-    # ---------------------------
-    # LOGOUT (PASSO 6 - ORGANIZADO)
-    # ---------------------------
 
+    #Representa um estado global da aplicação
+    usuario_logado = {"uid": None}
+    page.controls.clear()
+    mostrar_inicio()
+    page.update()
+    
+
+    # LOGOUT
+    
     def logout():
         page.controls.clear()
         mostrar_inicio()
         page.update()
 
-    # ---------------------------
-    # FUNÇÃO PADRÃO DE TELAS
-    # ---------------------------
 
+    # FUNÇÃO PADRÃO DE TELAS
+    
     def ir_para_tela(nome_sessao):
 
         page.controls.clear()
@@ -48,19 +53,17 @@ def main(page: ft.Page):
         page.add(conteudo_pagina)
         page.update()
 
-    # ---------------------------
+    
     # CONSULTAS
-    # ---------------------------
 
     def abrir_tela_consultas():
         page.controls.clear()
         page.add(appointments_view(page, mostrar_menu_principal))
         page.update()
 
-    # ---------------------------
-    # LOGIN
-    # ---------------------------
 
+    # LOGIN
+    
     def abrir_login():
 
         page.controls.clear()
@@ -75,9 +78,8 @@ def main(page: ft.Page):
 
         page.update()
 
-    # ---------------------------
+    
     # CADASTRO
-    # ---------------------------
 
     def abrir_cadastro():
 
@@ -92,9 +94,8 @@ def main(page: ft.Page):
 
         page.update()
 
-    # ---------------------------
-    # MENU PRINCIPAL (COM LOGOUT PASSO 6)
-    # ---------------------------
+
+    # MENU PRINCIPAL 
 
     def mostrar_menu_principal():
 
@@ -157,10 +158,9 @@ def main(page: ft.Page):
 
         page.update()
 
-    # ---------------------------
+    
     # TELA INICIAL
-    # ---------------------------
-
+  
     def mostrar_inicio():
 
         page.controls.clear()
@@ -193,11 +193,9 @@ def main(page: ft.Page):
 
         page.update()
 
-    # ---------------------------
-    # INÍCIO DO APP
-    # ---------------------------
+    
+    # INÍCIO DO Site
 
     mostrar_inicio()
-
 
 ft.app(target=main)
