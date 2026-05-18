@@ -2,16 +2,28 @@
 
 ## AUTENTICAÇÃO
 
-[ ] Criar tela de login
-[ ] Criar tela de cadastro
-[ ] Implementar logout
+[x] Criar tela de login
+[x] Criar tela de cadastro
+[x] Implementar logout
 [ ] Implementar alteração de senha
 [ ] Criptografar senhas
 
 ## BANCO DE DADOS
 
-[ ] Criar banco SQLite
-[ ] Criar tabela de usuários
+[x] Criar banco de dados
+[x] Criar tabela de usuários
 [ ] Criar tabela de pacientes
 [ ] Criar tabela de consultas
+
+## BUGFIXES
+
+[ ] Consertar o erro de exibição na tela de consultas
+[ ] Portar o site para um modelo totalmente online
+
+
+
+
+
+
+
 

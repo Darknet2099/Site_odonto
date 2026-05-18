@@ -1,8 +1,3 @@
-Para rodar a aplicação, será necessário:
+Flet
 
-
-1) Baixe o add-on "Flet", usando o comando
-
-C:\Users\Seu_usuario\AppData\Local\programs\Python\Python314\python.exe -m pip install flet
-
-2)
+firebase_admin
