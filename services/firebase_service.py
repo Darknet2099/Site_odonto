@@ -25,7 +25,9 @@ def criar_usuario(nome, nascimento, email, celular, senha):
         "nome": nome,
         "nascimento": nascimento,
         "email": email,
-        "celular": celular
+        "celular": celular,
+        "senha": senha
+        
     })
 
     return user.uid

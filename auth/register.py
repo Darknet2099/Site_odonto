@@ -1,3 +1,4 @@
+print("REGISTER CARREGADO")
 import flet as ft
 from services.firebase_service import criar_usuario
 
