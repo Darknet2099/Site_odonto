@@ -13,7 +13,8 @@
 [x] Criar banco de dados
 [x] Criar tabela de usuários
 [ ] Criar tabela de pacientes
-[ ] Criar tabela de consultas
+[x] Criar tabela de consultas
+[ ]Conectar as consultas com o firebase
 
 ## BUGFIXES
 
